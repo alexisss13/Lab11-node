@@ -1,36 +1,290 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 TeamConnect Pro - Sistema de Gestión de Equipos
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-15.0-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)
 
-First, run the development server:
+> 💼 Plataforma profesional para la gestión y visualización de equipos de trabajo con interfaz moderna y funcional.
 
+![Preview](https://img.shields.io/badge/Estado-Completado-success?style=for-the-badge)
+
+---
+
+## 📖 Descripción
+
+**TeamConnect Pro** es una aplicación web desarrollada con Next.js que permite gestionar y visualizar perfiles de usuarios de forma profesional. El proyecto fue desarrollado como parte del **Laboratorio 11** del curso de Desarrollo Web, enfocándose en la creación de interfaces modernas con React, componentes reutilizables y diseño corporativo.
+
+### ✨ Características Principales
+
+- 🎨 **Diseño Moderno y Profesional**: Interfaz limpia con paleta de colores corporativa (Slate & Emerald)
+- 📱 **Totalmente Responsivo**: Adaptable a dispositivos móviles, tablets y desktop
+- 🔄 **Componentes Reutilizables**: Arquitectura modular con React components
+- 🎯 **Interactividad Completa**: Filtros, favoritos, compartir perfiles y más
+- 🎭 **Animaciones Suaves**: Efectos hover, transiciones y CSS Modules
+- 🏷️ **Identidad de Marca**: Logo, tipografía y elementos corporativos consistentes
+- ⚡ **Optimizado**: Built con Next.js 15 para máximo rendimiento
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+| Tecnología | Uso |
+|------------|-----|
+| **Next.js 15** | Framework principal de React |
+| **React 18** | Librería de UI con hooks |
+| **TypeScript** | Tipado estático y mejor DX |
+| **TailwindCSS** | Estilos utility-first |
+| **CSS Modules** | Animaciones y estilos específicos |
+| **Heroicons** | Iconografía profesional |
+
+---
+
+## 📦 Instalación
+
+### Requisitos Previos
+
+- Node.js (v18 o superior)
+- npm o yarn
+- Git
+
+### Pasos de Instalación
 ```bash
+# 1. Clonar el repositorio
+git clone https://github.com/alexisss13/Lab11-node.git
+
+# 2. Navegar al directorio
+cd Lab11-node
+
+# 3. Instalar dependencias
+npm install
+# o
+yarn install
+
+# 4. Ejecutar en modo desarrollo
 npm run dev
-# or
+# o
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 5. Abrir en el navegador
+# http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎯 Estructura del Proyecto
+```
+Lab11-node/
+├── app/
+│   ├── page.tsx          # Página principal
+│   ├── layout.tsx        # Layout global
+│   └── globals.css       # Estilos globales
+├── components/
+│   ├── UserCard.tsx      # Componente de tarjeta de usuario
+│   ├── UserCard.module.css
+│   ├── Button.tsx        # Componente de botón reutilizable
+│   └── CardContainer.tsx # Wrapper con props.children
+├── public/               # Recursos estáticos
+└── package.json          # Dependencias del proyecto
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🎨 Componentes Principales
 
-To learn more about Next.js, take a look at the following resources:
+### 1️⃣ **UserCard**
+Tarjeta de perfil de usuario con información completa.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Características:**
+- Avatar con efecto hover
+- Indicador de estado en línea (pulse animation)
+- Sistema de rating con estrellas
+- Botones de acción (Contactar, Ver Perfil)
+- Favoritos y compartir
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Props:**
+```typescript
+interface UserCardProps {
+  name: string;
+  email: string;
+  image: string;
+  role: string;
+  location: string;
+  rating: number;
+  isOnline: boolean;
+  isFavorite?: boolean;
+  onToggleFavorite?: () => void;
+  onShare?: () => void;
+  onContact?: () => void;
+  onViewProfile?: () => void;
+}
+```
 
-## Deploy on Vercel
+### 2️⃣ **Button**
+Componente de botón altamente personalizable.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Variantes:**
+- `primary` - Botón principal (slate)
+- `secondary` - Botón secundario (gris)
+- `success` - Botón de éxito (verde)
+- `danger` - Botón de peligro (rojo)
+- `outline` - Botón con borde
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Tamaños:** `sm`, `md`, `lg`
+
+### 3️⃣ **CardContainer**
+Contenedor genérico usando `props.children`.
+```tsx
+<CardContainer className="custom-class">
+  {/* Cualquier contenido */}
+</CardContainer>
+```
+
+---
+
+## 💡 Funcionalidades Implementadas
+
+### 🔍 Filtrado Dinámico
+- Filtrar usuarios por estado "En línea"
+- Actualización en tiempo real del contador
+
+### ❤️ Sistema de Favoritos
+- Marcar/desmarcar usuarios favoritos
+- Cambio visual del icono (outline → solid)
+
+### 📤 Compartir Perfiles
+- Usar API nativa de compartir del navegador
+- Fallback: copiar al portapapeles
+
+### 📧 Contacto Directo
+- Abrir cliente de email con mailto:
+- Dirección pre-rellenada
+
+### 📊 Panel de Control
+- Total de usuarios
+- Usuarios en línea
+- Rating promedio calculado dinámicamente
+
+### 🎭 Animaciones y Efectos
+- Hover en tarjetas (scale)
+- Pulse animation en indicador online
+- Transiciones suaves en todos los elementos
+- Efecto backdrop-blur en modales
+
+---
+
+## 🎨 Paleta de Colores
+
+| Color | Uso | Código Hex |
+|-------|-----|------------|
+| **Slate 800** | Principal/Header | `#1e293b` |
+| **Emerald 600** | Acento/Marca | `#059669` |
+| **Amber 500** | Ratings | `#f59e0b` |
+| **Gray 50** | Background | `#f9fafb` |
+| **White** | Tarjetas | `#ffffff` |
+
+---
+
+## 📸 Screenshots
+
+### Vista Principal
+```
+┌─────────────────────────────────────────┐
+│  🎯 TeamConnect Pro                     │
+│     Panel de Control                    │
+├─────────────────────────────────────────┤
+│  📊 Total: 4  |  🟢 Online: 3  |  ⭐ 4.5 │
+├─────────────────────────────────────────┤
+│  👥 Nuestro Equipo                      │
+│  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐│
+│  │ Ana   │ │Carlos │ │ María │ │Javier ││
+│  │ López │ │Mendoza│ │García │ │Torres ││
+│  └───────┘ └───────┘ └───────┘ └───────┘│
+└─────────────────────────────────────────┘
+```
+
+---
+
+## 🧪 Pruebas
+
+Para probar todas las funcionalidades:
+
+1. **Filtro**: Click en "Filtrar" para ver solo usuarios en línea
+2. **Favoritos**: Click en el corazón de cualquier tarjeta
+3. **Compartir**: Click en el icono de compartir
+4. **Contactar**: Click en "Contactar" para abrir email
+5. **Ver Perfil**: Click en "Ver Perfil" para más información
+6. **Modal**: Click en "Añadir Usuario"
+
+---
+
+## 📚 Aprendizajes Clave
+
+Durante el desarrollo de este proyecto aprendí:
+
+✅ **Componentes Modulares**: Crear componentes reutilizables en React  
+✅ **Props.children**: Patrón de composición para wrappers  
+✅ **TailwindCSS**: Utility-first CSS para estilos rápidos  
+✅ **CSS Modules**: Estilos encapsulados y animaciones  
+✅ **TypeScript**: Interfaces y tipado para mejor DX  
+✅ **Hooks**: useState para manejo de estado local  
+✅ **Heroicons**: Integración de iconografía profesional  
+✅ **Next.js**: App Router y estructura de proyecto  
+
+---
+
+## 🚀 Mejoras Futuras
+
+- [ ] Backend con API REST
+- [ ] Base de datos (PostgreSQL)
+- [ ] Autenticación de usuarios
+- [ ] Sistema de búsqueda
+- [ ] Paginación de usuarios
+- [ ] Modo oscuro/claro
+- [ ] Tests unitarios (Jest/RTL)
+- [ ] Deploy en Vercel
+
+---
+
+## 👨‍💻 Autor
+
+**Alexis Jaren Levano Dominguez**  
+Grupo: 5° C24  
+Laboratorio 11 - Desarrollo Web
+
+---
+
+## 📄 Licencia
+
+Este proyecto fue desarrollado con fines educativos como parte del curso de Desarrollo Web.
+
+---
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Para cambios importantes:
+
+1. Fork el proyecto
+2. Crea una rama (`git checkout -b feature/AmazingFeature`)
+3. Commit cambios (`git commit -m 'Add: nueva característica'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+---
+
+## 📞 Contacto
+
+¿Preguntas o sugerencias? 
+
+- GitHub: [@alexisss13](https://github.com/alexisss13)
+- Proyecto: [Lab11-node](https://github.com/alexisss13/Lab11-node)
+
+---
+
+<div align="center">
+
+**⭐ Si te gustó este proyecto, no olvides dejar una estrella ⭐**
+
+Hecho con ❤️ y ☕ por Alexis Levano
+
+</div>
